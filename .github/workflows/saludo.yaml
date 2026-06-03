@@ -1,0 +1,24 @@
+name: Saludo
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  saludo:
+    runs-on: ubuntu-latest
+
+    env:
+      NOMBRE: Rodrigo Abel
+
+    steps:
+      - name: Saludo desde main
+        if: github.ref == 'refs/heads/main'
+        run: echo "Hola desde main, soy $NOMBRE"
+
+      - name: Saludo desde develop
+        if: github.ref == 'refs/heads/develop'
+        run: echo "Hola desde develop, soy $NOMBRE"
